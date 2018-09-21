@@ -1,2 +1,1 @@
-* To use
-npm install jquery
+To use: `npm install jquery`
