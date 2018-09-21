@@ -1,0 +1,105 @@
+
+.ah-tab-wrapper {
+    position: relative;
+}
+
+.ah-tab {
+    border-bottom: 1px solid #ebebeb;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    letter-spacing: -0.3em;
+}
+
+.ah-tab::before {
+    opacity: 0;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    width: 30px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+99&0+0,1+72 */
+    background: -moz-linear-gradient(right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%, rgba(255,255,255,1) 99%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 70%,rgba(255,255,255,1) 99%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 70%,rgba(255,255,255,1) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+    transition: opacity .3s;
+    z-index: 1;
+}
+
+.ah-tab::after {
+    opacity: 0;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    right: 0;
+    width: 80px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+99&0+0,1+72 */
+    background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 99%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 40%,rgba(255,255,255,1) 99%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 40%,rgba(255,255,255,1) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+    transition: opacity .3s;
+}
+
+.ah-tab-overflow-left::before {
+    opacity: 1;
+}
+
+.ah-tab-overflow-right::after {
+    opacity: 1;
+}
+
+.ah-tab-item {
+    color: #8b8b8b;
+    padding: 15px 0;
+    margin-right: 30px;
+    border-bottom: 3px solid transparent;
+    display: inline-block;
+    transition: all .3s;
+    cursor: pointer;
+    letter-spacing: normal;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .ah-tab-item {
+        margin-right: 50px;
+    }
+}
+
+.ah-tab-item:hover {
+    border-bottom: 3px solid #8b8b8b;
+}
+
+.ah-tab-item[data-ah-tab-active="true"] {
+    border-bottom-color: #215393;
+    color: #215393;
+}
+
+.ah-tab-overflow-list {
+    position: absolute;
+    width: 43px;
+    height: 100%;
+    right: -999999px;
+    opacity: 0;
+    top:0;
+    z-index: 1;
+    padding-top: 6px;
+    transition: opacity .3s;
+}
+
+.ah-tab-overflow-list[data-ah-tab-active="true"] {
+    right: 0;
+    opacity: 1;
+}
+
+.ah-tab-content {
+    display: none;
+}
+
+.ah-tab-content[data-ah-tab-active="true"] {
+    display: block;
+}

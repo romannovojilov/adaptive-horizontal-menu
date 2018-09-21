@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Adaptive Horizontal Menu</title>
+
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/jquery.horizontalmenu.css">
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="src/jquery.horizontalmenu.js"></script>
+
+</head>
+
+<body>
+    <div class="content">
+        <div class="ah-tab-wrapper">
+            <div class="ah-tab">
+                <a class="ah-tab-item" data-ah-tab-active="true" href="">Personal data</a>
+                <a class="ah-tab-item" href="">Contacts</a>
+                <a class="ah-tab-item" href="">Password change</a>
+            </div>
+            <!-- TODO: блок должен автогенерироваться -->
+            <div class="ah-tab-overflow-list">
+                <div class="show-xs action-list action-list-right text-left flex-xs">
+                    <!-- подставлять в value текущее значение -->
+                    <input value="&nbsp;" class="btn btn-default in-round in-small in-img-small in-img ii-arrow-line-b-lightgray gray-bg"
+                        style="background-image: url(Styles/Images/UI/menu_blue.svg); z-index: 0;" type="button">
+                    <ul style="top: 40px;width: auto;" class="nav-xs nav-sm">
+                        <li><a href="" class="lnk lb-13" data-ah-tab-active="true" style="white-space: nowrap">Personal
+                                data</a></li>
+                        <li><a href="" class="lnk lb-13">Contacts</a></li>
+                        <li><a href="" class="lnk lb-13">Password change</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
