@@ -12,7 +12,11 @@
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="src/jquery.horizontalmenu.js"></script>
-
+    <script>
+        $(function() {
+            $('.ah-tab-wrapper').horizontalmenu();
+        });
+    </script>
 </head>
 
 <body>
@@ -20,14 +24,16 @@
         <h1>Adaptive Horizontal Menu</h1>
         <div class="ah-tab-wrapper">
             <div class="ah-tab">
-                <a class="ah-tab-item" data-ah-tab-active="true" href="">Personal data</a>
+                <a class="ah-tab-item"  href="">Personal data</a>
                 <a class="ah-tab-item" href="">Contacts</a>
+                <a class="ah-tab-item"data-ah-tab-active="true" href="">Tab item with long name</a>
                 <a class="ah-tab-item" href="">Password change</a>
+                <a class="ah-tab-item"  href="">Tab item</a>
             </div>
             <!-- TODO: блок должен автогенерироваться -->
             <div class="ah-tab-overflow-list">
-                <div class="show-xs action-list action-list-right text-left flex-xs">
-                    <!-- подставлять в value текущее значение -->
+                <!-- <div class="show-xs action-list action-list-right text-left flex-xs">
+                     подставлять в value текущее значение
                     <input value="&nbsp;" class="btn btn-default in-round in-small in-img-small in-img ii-arrow-line-b-lightgray gray-bg"
                         style="background-image: url(Styles/Images/UI/menu_blue.svg); z-index: 0;" type="button">
                     <ul style="top: 40px;width: auto;" class="nav-xs nav-sm">
@@ -36,7 +42,7 @@
                         <li><a href="" class="lnk lb-13">Contacts</a></li>
                         <li><a href="" class="lnk lb-13">Password change</a></li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
