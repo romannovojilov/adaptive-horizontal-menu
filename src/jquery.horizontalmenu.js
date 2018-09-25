@@ -1,7 +1,10 @@
 (function ($) {
     $.fn.horizontalmenu = function (option) {
         var setting = {
+            itemClick: function(sender) {
 
+                return true;
+            }
         };
 
         if (option) $.extend(setting, option);
@@ -13,7 +16,7 @@
 
         var adaptiveTab = function(tabWrapper) {
                 var tab = $(tabWrapper).find('.ah-tab');
-                var tabOvorflowList = $(tabWrapper).find('.ah-tab-overflow-list');
+                var tabOvorflowList = $(tabWrapper).find('.ah-tab-overflow-wrapper');
                 var isOver = isOverflown(tab);
                 if(isOver) {
                     tab.addClass('ah-tab-overflow-right');
@@ -62,14 +65,33 @@
                 items.css('transform', 'translateX(' + marginLeft + 'px)');
             }
 
+            var generateOverflowMenu = function(tabWrapper) {
+                tabWrapper.find('.ah-tab-overflow-wrapper').remove();
+                var overWrapper = $('<div class="ah-tab-overflow-wrapper" />').appendTo(tabWrapper);
+                $('<button type="menu" class="ah-tab-overflow-menu"/>').appendTo(overWrapper);
+                var overList = $('<div class="ah-tab-overflow-list" />').appendTo(overWrapper);
+                tabWrapper.find('.ah-tab-item').bind('click', function() { 
+                    var isBreak = !setting.itemClick($(this));
+                    if(isBreak) {
+                        var wrapper = $(this).closest('.ah-tab-wrapper');
+                        wrapper.find('.ah-tab-item').removeAttr('data-ah-tab-active');
+                        wrapper.find('.ah-tab .ah-tab-item:eq(' + $(this).index() + ')').attr('data-ah-tab-active', 'true');
+                        wrapper.find('.ah-tab-overflow-wrapper .ah-tab-item:eq(' + $(this).index() + ')').attr('data-ah-tab-active', 'true');
+                        adaptiveTab(wrapper);
+                    }
+                    return !isBreak;
+                }).clone(true, true).removeAttr('style').appendTo(overList);
+            }
+
         return this.each(function () {
             var current = $(this);
+            generateOverflowMenu(current);
             adaptiveTab(current);
             var resizeStabilizer = undefined;
             $(window).bind('resize', function () {
                 if (resizeStabilizer) clearTimeout(resizeStabilizer);
                 resizeStabilizer = setTimeout(function () {
-                    adaptiveTab(current);
+                   adaptiveTab(current);
                 }, 20);
             });
         });
