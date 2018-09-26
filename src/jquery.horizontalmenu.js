@@ -2,7 +2,6 @@
     $.fn.horizontalmenu = function (option) {
         var setting = {
             itemClick: function(sender) {
-
                 return true;
             }
         };
@@ -32,7 +31,7 @@
                     marginRight = 0;
                     
                 if(isOver) {
-                    console.clear()
+                   // console.clear()
                     for(var i = 0; i < items.length; i++) {
                         var val = items.eq(i).width() + parseInt(items.eq(i).css('margin-right'));
                         if(i < activeIndex) {
@@ -65,35 +64,47 @@
                 items.css('transform', 'translateX(' + marginLeft + 'px)');
             }
 
-            var generateOverflowMenu = function(tabWrapper) {
-                tabWrapper.find('.ah-tab-overflow-wrapper').remove();
-                var overWrapper = $('<div class="ah-tab-overflow-wrapper" />').appendTo(tabWrapper);
-                $('<button type="menu" class="ah-tab-overflow-menu"/>').appendTo(overWrapper);
-                var overList = $('<div class="ah-tab-overflow-list" />').appendTo(overWrapper);
-                tabWrapper.find('.ah-tab-item').bind('click', function() { 
-                    var isBreak = !setting.itemClick($(this));
-                    if(isBreak) {
-                        var wrapper = $(this).closest('.ah-tab-wrapper');
-                        wrapper.find('.ah-tab-item').removeAttr('data-ah-tab-active');
-                        wrapper.find('.ah-tab .ah-tab-item:eq(' + $(this).index() + ')').attr('data-ah-tab-active', 'true');
-                        wrapper.find('.ah-tab-overflow-wrapper .ah-tab-item:eq(' + $(this).index() + ')').attr('data-ah-tab-active', 'true');
-                        adaptiveTab(wrapper);
+            var initialize = function(wrapper) {
+                if(wrapper.find('.ah-tab-overflow-wrapper').length) return false;
+
+                var items = wrapper.find('.ah-tab-item');
+                items.bind('click', function() { 
+                    var isContinue = setting.itemClick($(this));
+                    if(!isContinue) {
+                        var index =  $(this).index();
+                        var w = $(this).closest('.ah-tab-wrapper');
+                        w.find('.ah-tab-item').removeAttr('data-ah-tab-active');
+                        w.find('.ah-tab .ah-tab-item').eq(index).attr('data-ah-tab-active', 'true');
+                        w.find('.ah-tab-overflow-wrapper .ah-tab-item').eq(index).attr('data-ah-tab-active', 'true');
+                        adaptiveTab(w);
                     }
-                    return !isBreak;
-                }).clone(true, true).removeAttr('style').appendTo(overList);
+                    return isContinue;
+                });
+
+                $('<div>', {
+                    class: 'ah-tab-overflow-wrapper',
+                    append: $('<button>', {
+                        type: 'menu',
+                        class: 'ah-tab-overflow-menu'
+                    }).add($('<div>', {
+                        class: 'ah-tab-overflow-list',
+                        append: items.clone(true, true).removeAttr('style')
+                    })) 
+                }).appendTo(wrapper);
+
+                adaptiveTab(wrapper);
+
+                var resizeStabilizer = undefined;
+                $(window).bind('resize', function () {
+                    if (resizeStabilizer) clearTimeout(resizeStabilizer);
+                    resizeStabilizer = setTimeout(function () {
+                       adaptiveTab(wrapper);
+                    }, 20);
+                });
             }
 
         return this.each(function () {
-            var current = $(this);
-            generateOverflowMenu(current);
-            adaptiveTab(current);
-            var resizeStabilizer = undefined;
-            $(window).bind('resize', function () {
-                if (resizeStabilizer) clearTimeout(resizeStabilizer);
-                resizeStabilizer = setTimeout(function () {
-                   adaptiveTab(current);
-                }, 20);
-            });
+            initialize($(this));
         });
     };
 })(jQuery);
