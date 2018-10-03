@@ -35,6 +35,12 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=1);
 }
 
+@media (min-width: 768px) {
+    .ah-tab::before {
+        width: 50px;
+    }
+}
+
 .ah-tab::after {
     right: 100%;
     width: 80px;
