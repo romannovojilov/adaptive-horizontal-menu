@@ -1,5 +1,6 @@
 (function ($) {
     $.fn.horizontalmenu = function (option) {
+        
         var setting = {
             itemClick: function (sender) {
                 return true;
@@ -8,12 +9,14 @@
 
         if (option) $.extend(setting, option);
 
+        var shadowWidth = 80; // width of the .ah-tab::after
+        // width of the .ah-tab::before is identical to the margin-right of the tab list item
+
         var isHorizontalOverflow = function (selector) {
             var element = $(selector)[0];
             return element.scrollWidth > element.clientWidth;
         }
 
-        //80 - length of .ah-tab::after
         var adaptiveTab = function (tabWrapper) {
 
             var tab = $(tabWrapper).find('.ah-tab'); //tab list
@@ -23,14 +26,14 @@
 
             var isOverflow = isHorizontalOverflow(tab);
 
-            var tabOvorflowList = $(tabWrapper).find('.ah-tab-overflow-wrapper'); //overflow dropdown list
-            tabOvorflowList.attr('data-ah-tab-active', isOverflow);
+            $(tabWrapper).find('.ah-tab-overflow-wrapper') //overflow dropdown list wrapper
+                .attr('data-ah-tab-active', isOverflow);
 
-            var marginLeft = 0, //distance to the left of the active item
-                marginRight = 0, //distance to the right of the active item
-                index = item.index(); //index of the active item
-
+                var marginLeft = 0, //distance to the left of the active item
+                    marginRight = 0, //distance to the right of the active item
+                    index = item.index(); //index of the active item
             if (isOverflow) {
+                
                 for (var i = 0; i < items.length; i++) {
                     var current = items.eq(i);
                     var width = current.width() + (parseInt(current.css('margin-right')) || 0);
@@ -40,19 +43,17 @@
                     }
                     marginRight += width;
                 }
-
-
+                //marginLeft -= (parseInt(item.css('margin-right')) || 0);
                 //TODO: need to refactor {
-                if (marginLeft + item.width() + 80 > $(tab).width()) {
+                if (marginLeft + item.width() + shadowWidth > $(tab).width()) {
                     marginLeft *= -1;
                     if (index) {
 
-
-                        var dW = $(tab).width() - marginRight - 80;
-                        marginLeft += parseInt(item.css('margin-right'));
-                        console.log(dW);
-                        if (dW > 0)
-                            marginLeft += dW;
+                        var delta = $(tab).width() - marginRight - shadowWidth;
+                        //marginLeft += (parseInt(item.css('margin-right')) || 0);
+                        console.log(delta);
+                        if (delta > 0)
+                            marginLeft += delta;
                         //вычислить ширину после выделенного элемента назовем его dA. dW = если tab.width() - dA > 0, то marginLeft -= dW 
                         tab.addClass('ah-tab-overflow-left');
                     }
