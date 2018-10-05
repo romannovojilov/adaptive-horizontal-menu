@@ -3,7 +3,7 @@
 
         var setting = {
             itemClick: function (sender) {
-                return true;
+                return true; //if this finction return true then will be executed http request
             }
         };
 
@@ -17,7 +17,7 @@
             return element.scrollWidth > element.clientWidth;
         }
 
-        var adaptiveTab = function (tabWrapper) {
+        var adapt = function (tabWrapper) {
 
             var tab = $(tabWrapper).find('.ah-tab'); //tab list
 
@@ -85,7 +85,7 @@
                     w.find('.ah-tab-item').removeAttr('data-ah-tab-active');
                     w.find('.ah-tab .ah-tab-item').eq(index).attr('data-ah-tab-active', 'true');
                     w.find('.ah-tab-overflow-wrapper .ah-tab-item').eq(index).attr('data-ah-tab-active', 'true');
-                    adaptiveTab(w);
+                    adapt(w);
                 }
                 return isContinue;
             });
@@ -101,13 +101,13 @@
                 }))
             }).appendTo(wrapper);
 
-            adaptiveTab(wrapper);
+            adapt(wrapper);
 
             var resizeStabilizer = undefined;
             $(window).bind('resize', function () {
                 if (resizeStabilizer) clearTimeout(resizeStabilizer);
                 resizeStabilizer = setTimeout(function () {
-                    adaptiveTab(wrapper);
+                    adapt(wrapper);
                 }, 20);
             });
         }
