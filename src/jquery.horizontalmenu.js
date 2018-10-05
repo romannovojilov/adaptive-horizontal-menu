@@ -1,6 +1,6 @@
 (function ($) {
     $.fn.horizontalmenu = function (option) {
-        
+
         var setting = {
             itemClick: function (sender) {
                 return true;
@@ -29,11 +29,11 @@
             $(tabWrapper).find('.ah-tab-overflow-wrapper') //overflow dropdown list wrapper
                 .attr('data-ah-tab-active', isOverflow);
 
-                var marginLeft = 0, //distance to the left of the active item
-                    marginRight = 0, //distance to the right of the active item
-                    index = item.index(); //index of the active item
+            var marginLeft = 0, //distance to the left of the active item
+                marginRight = 0, //distance to the right of the active item
+                index = item.index(); //index of the active item
+
             if (isOverflow) {
-                
                 for (var i = 0; i < items.length; i++) {
                     var current = items.eq(i);
                     var width = current.width();
@@ -44,30 +44,27 @@
                     }
                     marginRight += width + margin;
                 }
-                
-                //TODO: need to refactor {
+
+                //if the tab list active item doesn't fit into the tab list
                 if (marginLeft + item.width() + shadowRight > $(tab).width()) {
                     marginLeft *= -1;
                     if (index) {
-
                         var delta = $(tab).width() - marginRight - shadowRight;
-                        console.log(delta);
+                        //if distance to the right is less than the width of the tab list
                         if (delta > 0)
-                            marginLeft += delta;
-                        //вычислить ширину после выделенного элемента назовем его dA. dW = если tab.width() - dA > 0, то marginLeft -= dW 
+                            marginLeft += delta; //decrease distance to the left at delta
                         tab.addClass('ah-tab-overflow-left');
                     }
                 } else {
                     marginLeft = 0;
                     tab.removeClass('ah-tab-overflow-left');
                 }
-                // }
-
-
+                
                 tab.addClass('ah-tab-overflow-right');
             } else {
                 tab.removeClass('ah-tab-overflow-left ah-tab-overflow-right');
             }
+
             items.css({
                 '-moz-transform': 'translateX(' + marginLeft + 'px)',
                 '-o-transform': 'translateX(' + marginLeft + 'px)',
