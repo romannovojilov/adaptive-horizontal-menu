@@ -9,7 +9,7 @@
 
         if (option) $.extend(setting, option);
 
-        var shadowWidth = 80; // width of the .ah-tab::after
+        var shadowRight = 80; // width of the .ah-tab::after
         // width of the .ah-tab::before is identical to the margin-right of the tab list item
 
         var isHorizontalOverflow = function (selector) {
@@ -36,21 +36,21 @@
                 
                 for (var i = 0; i < items.length; i++) {
                     var current = items.eq(i);
-                    var width = current.width() + (parseInt(current.css('margin-right')) || 0);
+                    var width = current.width();
+                    var margin = (parseInt(current.css('margin-right')) || 0);
                     if (i < index) {
-                        marginLeft += width;
+                        marginLeft += width + (i + 1 < index ? margin : 0);
                         continue;
                     }
-                    marginRight += width;
+                    marginRight += width + margin;
                 }
-                //marginLeft -= (parseInt(item.css('margin-right')) || 0);
+                
                 //TODO: need to refactor {
-                if (marginLeft + item.width() + shadowWidth > $(tab).width()) {
+                if (marginLeft + item.width() + shadowRight > $(tab).width()) {
                     marginLeft *= -1;
                     if (index) {
 
-                        var delta = $(tab).width() - marginRight - shadowWidth;
-                        //marginLeft += (parseInt(item.css('margin-right')) || 0);
+                        var delta = $(tab).width() - marginRight - shadowRight;
                         console.log(delta);
                         if (delta > 0)
                             marginLeft += delta;
