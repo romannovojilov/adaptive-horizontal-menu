@@ -17,16 +17,16 @@
             return element.scrollWidth > element.clientWidth;
         }
 
-        var adapt = function (tabWrapper) {
+        var adapt = function (wrapper) {
 
-            var tab = $(tabWrapper).find('.ah-tab'); //tab list
+            var tab = $(wrapper).find('.ah-tab'); //tab list
 
             var items = tab.find('.ah-tab-item'); //tab list items
             var item = tab.find('.ah-tab-item[data-ah-tab-active="true"]'); //tab list active item
 
             var isOverflow = isHorizontalOverflow(tab);
 
-            $(tabWrapper).find('.ah-tab-overflow-wrapper') //overflow dropdown list wrapper
+            $(wrapper).find('.ah-tab-overflow-wrapper') //overflow dropdown list wrapper
                 .attr('data-ah-tab-active', isOverflow);
 
             var marginLeft = 0, //distance to the left of the active item
