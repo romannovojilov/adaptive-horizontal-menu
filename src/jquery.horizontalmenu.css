@@ -77,6 +77,10 @@
     transition: opacity .3s;
 }
 
+.ah-tab-overflow-wrapper:hover {
+    z-index: 2;
+}
+
 .ah-tab-overflow-menu {
     background: transparent url(images/ah-tab-overflow-menu.svg) center center no-repeat;
     background-size: 18px;
