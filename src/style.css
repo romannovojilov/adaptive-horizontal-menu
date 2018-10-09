@@ -8,7 +8,17 @@ html * {
 }
 
 h1 {
-    margin: 30px 0;
+    padding: 30px 0;
+    border-bottom: 1px solid #ebebeb
+}
+
+
+h2 {
+    margin: 200px 0 10px 0;
+}
+
+h2:first-child {
+    margin-top: 40px;
 }
 
 .content {

@@ -99,7 +99,7 @@
 
 .ah-tab-overflow-list {
     position: absolute;
-    top: -1000%;
+    top: -10000%;
     right: 0;
     text-align: left;
     background-color: #fff;

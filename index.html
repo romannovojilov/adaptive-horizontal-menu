@@ -14,10 +14,27 @@
     <script src="src/jquery.horizontalmenu.js"></script>
     <script>
         $(function () {
-            $('.ah-tab-wrapper').horizontalmenu({
-                itemClick : function(item) {
-                    $('.ah-tab-content-wrapper .ah-tab-content').removeAttr('data-ah-tab-active');
-                    $('.ah-tab-content-wrapper .ah-tab-content:eq(' + $(item).index() + ')').attr('data-ah-tab-active', 'true');
+
+            $('#example1_tab').horizontalmenu();
+
+            $('#example2_tab').horizontalmenu({
+                itemClick: function (item) {
+                    return false;
+                }
+            });
+
+            $('#example3_tab').horizontalmenu({
+                itemClick: function (item) {
+                    $('#example3_tab_content .ah-tab-content').removeAttr('data-ah-tab-active');
+                    $($(item).attr('href')).attr('data-ah-tab-active', 'true');
+                    return false;
+                }
+            });
+
+            $('#tab_list').horizontalmenu({
+                itemClick: function (item) {
+                    $('#tab_list_content .ah-tab-content').removeAttr('data-ah-tab-active');
+                    $('#tab_list_content .ah-tab-content:eq(' + $(item).index() + ')').attr('data-ah-tab-active', 'true');
                     return false; //if this finction return true then will be executed http request
                 }
             });
@@ -28,30 +45,108 @@
 <body>
     <div class="content">
         <h1>Adaptive Horizontal Tab Menu</h1>
-        <div class="ah-tab-wrapper">
-            <div class="ah-tab">
-                <a class="ah-tab-item" data-ah-tab-active="true" href="">Personal data</a>
-                <a class="ah-tab-item" href="">Contacts</a>
-                <a class="ah-tab-item" href="">Tab item with long name</a>
-                <a class="ah-tab-item" href="">Password change</a>
-                <a class="ah-tab-item" href="">Tab item</a>
+
+        <div>
+            
+                <h2>Tab list</h2>
+                <div class="ah-tab-wrapper">
+                        <div class="ah-tab">
+                            <a class="ah-tab-item" href="" data-ah-tab-active="true">Tab item</a>
+                        </div>
+                    </div>
+                    
+                    <div class="ah-tab-content-wrapper">
+                        <div class="ah-tab-content" data-ah-tab-active="true">
+                            Tab item content
+                        </div>
+                    </div>
+
+
+
+
+            <h2>Tab list</h2>
+
+            <div id="tab_list" class="ah-tab-wrapper">
+                <div class="ah-tab">
+                    <a class="ah-tab-item" data-ah-tab-active="true" href="">Personal data</a>
+                    <a class="ah-tab-item" href="">Contacts</a>
+                    <a class="ah-tab-item" href="">Tab item with long name</a>
+                    <a class="ah-tab-item" href="">Password change</a>
+                    <a class="ah-tab-item" href="">Tab item</a>
+                    <a class="ah-tab-item" href="">Other information tab</a>
+                    <a class="ah-tab-item" href="">About company</a>
+                </div>
             </div>
-        </div>
-        <div class="ah-tab-content-wrapper">
-            <div class="ah-tab-content" data-ah-tab-active="true">
-                <h2>Personal data</h2>
+            <div id="tab_list_content" class="ah-tab-content-wrapper">
+                <div class="ah-tab-content" data-ah-tab-active="true">
+                    <h3>Personal data</h3>
+                </div>
+                <div class="ah-tab-content">
+                    <h3>Contacts</h3>
+                </div>
+                <div class="ah-tab-content">
+                    <h3>Tab item with a long name</h3>
+                </div>
+                <div class="ah-tab-content">
+                    <h3>Password change</h3>
+                </div>
+                <div class="ah-tab-content">
+                    <h3>Tab item</h3>
+                </div>
+                <div class="ah-tab-content">
+                    <h3>Other information tab</h3>
+                </div>
             </div>
-            <div class="ah-tab-content">
-                <h2>Contacts</h2>
+
+            <h2>Example 1</h2>
+            <div id="example1_tab" class="ah-tab-wrapper">
+                <div class="ah-tab">
+                    <a href="" class="ah-tab-item" data-ah-tab-active="true">Tab item 1</a>
+                    <a href="" class="ah-tab-item">Tab item 2</a>
+                    <a href="" class="ah-tab-item">Tab item 3</a>
+                    <a href="" class="ah-tab-item">Tab item 4</a>
+                    <a href="" class="ah-tab-item">Tab item 5</a>
+                    <a href="" class="ah-tab-item">Tab item 6</a>
+                </div>
             </div>
-            <div class="ah-tab-content">
-                <h2>Tab item with a long name</h2>
+
+            <h2>Example 2</h2>
+            <div id="example2_tab" class="ah-tab-wrapper">
+                <div class="ah-tab">
+                    <a href="" class="ah-tab-item" data-ah-tab-active="true">Tab item 1</a>
+                    <a href="" class="ah-tab-item">Tab item 2</a>
+                    <a href="" class="ah-tab-item">Tab item 3</a>
+                    <a href="" class="ah-tab-item">Tab item 4</a>
+                </div>
             </div>
-            <div class="ah-tab-content">
-                <h2>Password change</h2>
+
+            <h2>Example 3</h2>
+            <div id="example3_tab" class="ah-tab-wrapper">
+                <div class="ah-tab">
+                    <a href="#tab1" class="ah-tab-item" data-ah-tab-active="true">Tab item 1</a>
+                    <a href="#tab2" class="ah-tab-item">Tab item 2</a>
+                    <a href="#tab3" class="ah-tab-item">Tab item 3</a>
+                    <a href="#tab4" class="ah-tab-item">Tab item 4</a>
+                    <a href="#tab5" class="ah-tab-item">Tab item 5</a>
+                </div>
             </div>
-            <div class="ah-tab-content">
-                <h2>Tab item</h2>
+
+            <div id="example3_tab_content" class="ah-tab-content-wrapper">
+                <div id="tab1" class="ah-tab-content" data-ah-tab-active="true">
+                    <h3>Tab item 1 content</h3>
+                </div>
+                <div id="tab2" class="ah-tab-content">
+                    <h3>Tab item 2 content</h3>
+                </div>
+                <div id="tab3" class="ah-tab-content">
+                    <h3>Tab item 3 content</h3>
+                </div>
+                <div id="tab4" class="ah-tab-content">
+                    <h3>Tab item 4 content</h3>
+                </div>
+                <div id="tab5" class="ah-tab-content">
+                    <h3>Tab item 5 content</h3>
+                </div>
             </div>
         </div>
     </div>
