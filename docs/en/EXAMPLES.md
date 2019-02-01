@@ -1,4 +1,4 @@
-# Примеры
+# Examples
 
 This document contains examples of using the component.
 
