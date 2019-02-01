@@ -4,7 +4,7 @@ This document contains a detailed description of the component, its structure, b
 
 ## HTML
 
-The full HTML structure of the component consists of **Navigation** и **Content**.
+The full HTML structure of the component consists of **Navigation** and **Content**.
 However, navigation can be used independently of the content and can be a set of links.
 
 ![Navigation and content](../../src/screenshots/s1_888x178.png)
@@ -49,7 +49,7 @@ To select the active menu item, use the attribute `data-ah-tab-active="true"`.
 
 You can extend the component by adding multiple menu items, and only one of them can contain an activity attribute `data-ah-tab-active="true"`.  
 
-When `JS` initializes a component to **его обертку** `div.ah-tab-wrapper` renders additional HTML markup, which is responsible for displaying an additional menu if the main menu does not fit on the screen.  
+When `JS` initializes a component to **its wrapper** `div.ah-tab-wrapper` renders additional HTML markup, which is responsible for displaying an additional menu if the main menu does not fit on the screen.
 
 Additional HTML markup consists of:  
 
