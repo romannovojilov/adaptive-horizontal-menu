@@ -1,0 +1,25 @@
+{
+  "name": "adaptive-horizontal-menu",
+  "version": "1.0.0",
+  "description": "small jquery component which is an adaptive horizontal tab menu",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romannovojilov/adaptive-horizontal-menu.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/romannovojilov/adaptive-horizontal-menu/issues"
+  },
+  "homepage": "https://github.com/romannovojilov/adaptive-horizontal-menu#readme",
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}

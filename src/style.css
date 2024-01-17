@@ -1,0 +1,28 @@
+html * {
+    font-family: 'Segoe UI', Arial, Tahoma, Geneva, Verdana, sans-serif;
+    color: #444;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    -webkit-appearance: none !important;
+}
+
+h1 {
+    padding: 30px 0;
+    border-bottom: 1px solid #ebebeb
+}
+
+
+h2 {
+    margin: 200px 0 10px 0;
+}
+
+h2:first-child {
+    margin-top: 40px;
+}
+
+.content {
+    max-width: 1170px;
+    margin: auto;
+    padding: 0 15px;
+}
